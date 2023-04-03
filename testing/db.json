@@ -1,0 +1,264 @@
+{
+    "dashboard": {
+        "xnicTotals": {
+            "PktCounters": {
+                "Nic2McaTotal": 30218,
+                "Nic2McaMc": 30218,
+                "Mca2NicTotal": 31526,
+                "Mca2NicMc": 31524,
+                "Mca2NicIgmp": 6,
+                "Mca2NicDrops": 0,
+                "Nic2McaDrops": 0,
+                "Mca2KniDrops": 0,
+                "Kni2McaDrops": 0,
+                "McaPktDrops": 0,
+                "McaBigPktDrops": 0
+            },
+            "ByteCounters": {
+                "Nic2McaTotal": 32347812,
+                "Nic2McaMc": 32347812,
+                "Mca2NicTotal": 33795772,
+                "Mca2NicMc": 33795584
+            },
+            "Latencies": {
+                "Count": 0,
+                "Sum": 0,
+                "Buckets": null
+            },
+            "HARxCounters": null,
+            "Timestamp": 1657216501229157803,
+            "SoftwareVersion": "",
+            "XnicVersion": 0,
+            "RxMulticastGroups": null,
+            "TxMulticastGroups": null,
+            "XnicMode": "",
+            "NumConnections": 0
+        },
+        "xnics": {
+            "Agent-1": {
+                "PktCounters": {
+                    "Nic2McaTotal": 75,
+                    "Nic2McaMc": 75,
+                    "Mca2NicTotal": 31516,
+                    "Mca2NicMc": 31516,
+                    "Mca2NicIgmp": 2,
+                    "Mca2NicDrops": 0,
+                    "Nic2McaDrops": 0,
+                    "Mca2KniDrops": 0,
+                    "Kni2McaDrops": 0,
+                    "McaPktDrops": 0,
+                    "McaBigPktDrops": 0
+                },
+                "ByteCounters": {
+                    "Nic2McaTotal": 8754,
+                    "Nic2McaMc": 8754,
+                    "Mca2NicTotal": 33794704,
+                    "Mca2NicMc": 33794704
+                },
+                "Latencies": {
+                    "Count": 0,
+                    "Sum": 0,
+                    "Buckets": {
+                        "0.000050": 0,
+                        "0.000100": 0,
+                        "0.000250": 0,
+                        "0.000500": 0,
+                        "0.001000": 0,
+                        "0.002000": 0,
+                        "0.005000": 0,
+                        "0.010000": 0,
+                        "0.011000": 0
+                    }
+                },
+                "HARxCounters": [],
+                "Timestamp": 1657216501229157803,
+                "SoftwareVersion": "v1.7.4.draft",
+                "XnicVersion": 2
+            },
+            "Agent-2": {
+                "PktCounters": {
+                    "Nic2McaTotal": 30107,
+                    "Nic2McaMc": 30107,
+                    "Mca2NicTotal": 0,
+                    "Mca2NicMc": 0,
+                    "Mca2NicIgmp": 2,
+                    "Mca2NicDrops": 0,
+                    "Nic2McaDrops": 0,
+                    "Mca2KniDrops": 0,
+                    "Kni2McaDrops": 0,
+                    "McaPktDrops": 0,
+                    "McaBigPktDrops": 0
+                },
+                "ByteCounters": {
+                    "Nic2McaTotal": 32334918,
+                    "Nic2McaMc": 32334918,
+                    "Mca2NicTotal": 0,
+                    "Mca2NicMc": 0
+                },
+                "Latencies": {
+                    "Count": 0,
+                    "Sum": 0,
+                    "Buckets": {
+                        "0.000050": 0,
+                        "0.000100": 0,
+                        "0.000250": 0,
+                        "0.000500": 0,
+                        "0.001000": 0,
+                        "0.002000": 0,
+                        "0.005000": 0,
+                        "0.010000": 0,
+                        "0.011000": 0
+                    }
+                },
+                "HARxCounters": [],
+                "Timestamp": 1657216500709825713,
+                "SoftwareVersion": "v1.7.4.draft",
+                "XnicVersion": 2
+            },
+            "Agent-3": {
+                "PktCounters": {
+                    "Nic2McaTotal": 18,
+                    "Nic2McaMc": 18,
+                    "Mca2NicTotal": 9,
+                    "Mca2NicMc": 8,
+                    "Mca2NicIgmp": 1,
+                    "Mca2NicDrops": 0,
+                    "Nic2McaDrops": 0,
+                    "Mca2KniDrops": 0,
+                    "Kni2McaDrops": 0,
+                    "McaPktDrops": 0,
+                    "McaBigPktDrops": 0
+                },
+                "ByteCounters": {
+                    "Nic2McaTotal": 2070,
+                    "Nic2McaMc": 2070,
+                    "Mca2NicTotal": 974,
+                    "Mca2NicMc": 880
+                },
+                "Latencies": {
+                    "Count": 18,
+                    "Sum": 302211676294169800,
+                    "Buckets": {
+                        "0.000050": 0,
+                        "0.000100": 0,
+                        "0.000250": 0,
+                        "0.000500": 0,
+                        "0.001000": 0,
+                        "0.002000": 0,
+                        "0.005000": 0,
+                        "0.010000": 0,
+                        "0.011000": 0
+                    }
+                },
+                "HARxCounters": [],
+                "Timestamp": 1657216500559694400,
+                "SoftwareVersion": "v1.7.4.draft",
+                "XnicVersion": 2
+            },
+            "Agent-4": {
+                "PktCounters": {
+                    "Nic2McaTotal": 18,
+                    "Nic2McaMc": 18,
+                    "Mca2NicTotal": 1,
+                    "Mca2NicMc": 0,
+                    "Mca2NicIgmp": 1,
+                    "Mca2NicDrops": 0,
+                    "Nic2McaDrops": 0,
+                    "Mca2KniDrops": 0,
+                    "Kni2McaDrops": 0,
+                    "McaPktDrops": 0,
+                    "McaBigPktDrops": 0
+                },
+                "ByteCounters": {
+                    "Nic2McaTotal": 2070,
+                    "Nic2McaMc": 2070,
+                    "Mca2NicTotal": 94,
+                    "Mca2NicMc": 0
+                },
+                "Latencies": {
+                    "Count": 18,
+                    "Sum": 302211676294180540,
+                    "Buckets": {
+                        "0.000050": 0,
+                        "0.000100": 0,
+                        "0.000250": 0,
+                        "0.000500": 0,
+                        "0.001000": 0,
+                        "0.002000": 0,
+                        "0.005000": 0,
+                        "0.010000": 0,
+                        "0.011000": 0
+                    }
+                },
+                "HARxCounters": [],
+                "Timestamp": 1657216500954028100,
+                "SoftwareVersion": "v1.7.4.draft",
+                "XnicVersion": 2
+            }
+        },
+        "replTotals": {
+            "host": "",
+            "sequence": 95924,
+            "rxCount": 31535,
+            "txCount": 30332,
+            "rxBytes": 33796794,
+            "txBytes": 32361180,
+            "rxBridgeBytes": 0,
+            "rxBridgeCount": 0,
+            "timestamp": 1657216500274611599,
+            "dropsByByteLimit": 0,
+            "dropsByCountLimit": 0,
+            "rxMeshPktCount": 0,
+            "rxMeshBytes": 0,
+            "txMeshPktCount": 0,
+            "txMeshBytes": 0,
+            "rxUnicastPktCount": 0,
+            "rxUnicastBytes": 0,
+            "txUnicastPktCount": 0,
+            "txUnicastBytes": 0,
+            "rxMulticastGroups": [
+                {
+                    "groupIp": "239.1.1.3",
+                    "pktsCount": 31460,
+                    "bytesCount": 33788040,
+                    "lastUpdate": "2022-07-07T15:29:00.789006233Z",
+                    "srcIp": null,
+                    "srcPort": 0,
+                    "protocolType": 0,
+                    "numberOfDestinations": 0
+                },
+                {
+                    "groupIp": "239.0.0.251",
+                    "pktsCount": 75,
+                    "bytesCount": 8754,
+                    "lastUpdate": "2022-07-07T17:54:49.132519721Z",
+                    "srcIp": null,
+                    "srcPort": 0,
+                    "protocolType": 0,
+                    "numberOfDestinations": 0
+                }
+            ],
+            "subscriptionId": "d723b93f-112c-49fb-9fda-03d3ada867f3",
+            "hostName": "dsd-core-174",
+            "numCores": 8,
+            "replStatus": "running",
+            "authorized": true,
+            "validationResult": {
+                "switch": 556,
+                "authorized": true,
+                "denialReason": null,
+                "trialPeriod": {
+                    "startDate": "2021-12-22T19:38:33.565336Z",
+                    "endDate": "2022-08-21T19:38:33.565Z"
+                },
+                "applicationId": null,
+                "isMarketplace": true,
+                "meshes": {
+                    "uid": "DF91521E-7202-A3C2-8156-1FF5070545E9",
+                    "swxtches": ["10.2.128.10", "10.5.1.6"]
+                },
+                "expiresAt": "2033-04-05T21:09:00Z"
+            }
+        }
+    }
+}

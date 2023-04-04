@@ -33,13 +33,13 @@ class WxckedEye:
         documents = []
 
         if "xnicTotals" in data.keys():
-            docs = self.parseXnic("xnictotals", data["xnicTotals"])
-            documents.extend(docs)
+            doc = self.parseXnic(data["xnicTotals"])
+            documents.append(doc)
 
         if "xnics" in data.keys():
             for agent, value in data["xnics"].items():
-                docs = self.parseXnic("xnics", value, agent)
-                documents.extend(docs)
+                doc = self.parseXnic(value, agent)
+                documents.append(doc)
 
         if "replTotals" in data.keys():
             docs = self.parseReplTotals(data["replTotals"])
@@ -56,54 +56,45 @@ class WxckedEye:
 
         return documents
 
-    def parseXnic(self, metricset, xnicdef, agent=None):
-        documents = []
+    def parseXnic(self, xnicdef, agent=None):
+        fields = {}
 
         for key in ["PktCounters", "ByteCounters", "Latencies"]:
-            fields = {}
-
             for k, v in xnicdef[key].items():
                 # parse buckets later
                 if k.lower() != "buckets":
-                    fields.update({"l_" + k.lower(): v})
-
-            if agent:
-                fields.update({"s_agent": agent})
-
-            document = {
-                "fields": fields,
-                "host": self.host,
-                "name": "{metricset}_{metric}".format(
-                    metricset=metricset, metric=key.lower()
-                ),
-            }
-
-            documents.append(document)
-
-        fields = {
-            "l_timestamp": xnicdef["Timestamp"],
-            "s_softwareversion": xnicdef["SoftwareVersion"],
-            "s_xnicversion": xnicdef["XnicVersion"],
-        }
+                    fields.update(
+                        {
+                            "l_{metricset}_{metric}".format(
+                                metricset=key.lower(), metric=k.lower()
+                            ): v
+                        }
+                    )
 
         if "NumConnections" in xnicdef.keys():
-            fields.update({"l_numconnections": xnicdef["NumConnections"]})
+            fields.update({"l_info_numconnections": xnicdef["NumConnections"]})
 
         if "XnicMode" in xnicdef.keys():
-            fields.update({"s_xnicmode": xnicdef["XnicMode"]})
+            fields.update({"s_info_xnicmode": xnicdef["XnicMode"]})
+
+        fields.update(
+            {
+                "l_info_timestamp": xnicdef["Timestamp"],
+                "s_info_softwareversion": xnicdef["SoftwareVersion"],
+                "s_info_xnicversion": xnicdef["XnicVersion"],
+            }
+        )
+
+        document = {}
 
         if agent:
             fields.update({"s_agent": agent})
+            document.update({"fields": fields, "host": self.host, "name": "agent"})
 
-        document = {
-            "fields": fields,
-            "host": self.host,
-            "name": "{metricset}_info".format(metricset=metricset),
-        }
+        else:
+            document.update({"fields": fields, "host": self.host, "name": "totals"})
 
-        documents.append(document)
-
-        return documents
+        return document
 
     def parseReplTotals(self, replTotalDef):
         documents = []
@@ -112,7 +103,7 @@ class WxckedEye:
 
         fields.update(
             {
-                "l_{key}".format(key=k): replTotalDef[k]
+                "l_{}".format(k): replTotalDef[k]
                 for k in [
                     "sequence",
                     "rxCount",
@@ -137,7 +128,7 @@ class WxckedEye:
 
         fields.update(
             {
-                "s_{key}".format(key=k): replTotalDef[k]
+                "s_{}".format(k): replTotalDef[k]
                 for k in ["host", "subscriptionId", "hostName", "replStatus"]
             }
         )
@@ -236,7 +227,7 @@ def main():
     if args.dump:
         resp = collector.fetch()
 
-        with open("data.json", "w") as f:
+        with open("data.json", "w", encoding="UTF-8") as f:
             json.dump(resp, f, indent=4)
 
     else:

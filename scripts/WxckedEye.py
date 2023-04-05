@@ -264,7 +264,7 @@ def main():
         with open("data.json", "w", encoding="UTF-8") as f:
             json.dump(resp, f, indent=4)
 
-    if args.watch:
+    elif args.watch:
         input_quit = False
 
         while input_quit != "q":

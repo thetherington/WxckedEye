@@ -42,6 +42,11 @@ function resetCounters() {
             }
         }
     }
+
+    for (const group of db.dashboard.replTotals.rxMulticastGroups) {
+        group["bytesCount"] = 0;
+        group["lastUpdate"] = new Date(Date.now()).toISOString();
+    }
 }
 
 function incrementCounters() {
@@ -64,6 +69,11 @@ function incrementCounters() {
                     Math.floor(Math.random() * 100000) + 10000;
             }
         }
+    }
+
+    for (const group of db.dashboard.replTotals.rxMulticastGroups) {
+        group["bytesCount"] += Math.floor(Math.random() * 100000) + 10000;
+        group["lastUpdate"] = new Date(Date.now()).toISOString();
     }
 
     counter++;

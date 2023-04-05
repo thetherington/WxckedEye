@@ -3,6 +3,7 @@ import json
 
 import requests
 import urllib3
+from dateutil import parser
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 requests.packages.urllib3.disable_warnings()
@@ -14,6 +15,8 @@ class WxckedEye:
         self.proto = proto
         self.port = port
         self.api = "api/wxckedeye/v1/dashboard"
+
+        self.store = {}
 
     def fetch(self):
         url = "{proto}://{host}:{port}/{api}".format(
@@ -165,6 +168,28 @@ class WxckedEye:
                 "i_numberofdestinations": group["numberOfDestinations"],
             }
 
+            if group["groupIp"] in self.store.keys():
+                group_prev = self.store[group["groupIp"]]
+
+                new_bytes = group["bytesCount"] - group_prev["bytesCount"]
+                dt_prev = parser.parse(group_prev["lastUpdate"])
+                dt_new = parser.parse(group["lastUpdate"])
+                dt_diff = dt_new - dt_prev
+
+                if new_bytes != 0:
+                    byte_rate = new_bytes / int(dt_diff.total_seconds())
+                    bit_rate = int(byte_rate * 8)
+                    fields.update({"l_bitrate": bit_rate})
+
+                else:
+                    fields.update({"l_bitrate": 0})
+
+                self.store[group["groupIp"]].update(group)
+
+            else:
+                self.store.update({group["groupIp"]: group})
+                fields.update({"l_bitrate": 0})
+
             document = {
                 "fields": fields,
                 "host": self.host,
@@ -218,6 +243,15 @@ def main():
         help="Dump the response payload to a file",
     )
 
+    args_parser.add_argument(
+        "-w",
+        "--watch",
+        required=False,
+        default=False,
+        action="store_true",
+        help="Re-run the collection",
+    )
+
     args = args_parser.parse_args()
 
     collector = WxckedEye(
@@ -229,6 +263,16 @@ def main():
 
         with open("data.json", "w", encoding="UTF-8") as f:
             json.dump(resp, f, indent=4)
+
+    if args.watch:
+        input_quit = False
+
+        while input_quit != "q":
+            docs = collector.collect()
+
+            print(json.dumps(docs, indent=1))
+
+            input_quit = input("\nType q to quit or just hit enter: ")
 
     else:
         docs = collector.collect()

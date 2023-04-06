@@ -57,6 +57,8 @@ class WxckedEye:
                 )
                 documents.extend(docs)
 
+        documents.append(self.parseTopLevel(data))
+
         return documents
 
     def parseXnic(self, xnicdef, agent=None):
@@ -75,16 +77,16 @@ class WxckedEye:
                     )
 
         if "NumConnections" in xnicdef.keys():
-            fields.update({"l_info_numconnections": xnicdef["NumConnections"]})
+            fields.update({"l_info_numconnections": xnicdef.get("NumConnections")})
 
         if "XnicMode" in xnicdef.keys():
-            fields.update({"s_info_xnicmode": xnicdef["XnicMode"]})
+            fields.update({"s_info_xnicmode": xnicdef.get("XnicMode")})
 
         fields.update(
             {
-                "l_info_timestamp": xnicdef["Timestamp"],
-                "s_info_softwareversion": xnicdef["SoftwareVersion"],
-                "s_info_xnicversion": xnicdef["XnicVersion"],
+                "l_info_timestamp": xnicdef.get("Timestamp"),
+                "s_info_softwareversion": xnicdef.get("SoftwareVersion"),
+                "s_info_xnicversion": xnicdef.get("XnicVersion"),
             }
         )
 
@@ -106,7 +108,7 @@ class WxckedEye:
 
         fields.update(
             {
-                "l_{}".format(k): replTotalDef[k]
+                "l_{}".format(k): replTotalDef.get(k)
                 for k in [
                     "sequence",
                     "rxCount",
@@ -129,20 +131,6 @@ class WxckedEye:
             }
         )
 
-        fields.update(
-            {
-                "s_{}".format(k): replTotalDef[k]
-                for k in ["host", "subscriptionId", "hostName", "replStatus"]
-            }
-        )
-
-        fields.update(
-            {
-                "i_numcores": replTotalDef["numCores"],
-                "b_authorized": replTotalDef["authorized"],
-            }
-        )
-
         document = {
             "fields": fields,
             "host": self.host,
@@ -153,19 +141,53 @@ class WxckedEye:
 
         return documents
 
+    def parseTopLevel(self, data):
+        fields = {}
+
+        fields.update(
+            {
+                "s_{}".format(k): data.get(k)
+                for k in [
+                    "hostName",
+                    "subscriptionId",
+                    "hostName",
+                    "replStatus",
+                    "ipAddr",
+                    "cloud",
+                    "swxtchName",
+                    "remfVersion",
+                ]
+            }
+        )
+
+        fields.update(
+            {
+                "i_numcores": data.get("numCores"),
+                "b_authorized": data.get("authorized"),
+            }
+        )
+
+        document = {
+            "fields": fields,
+            "host": self.host,
+            "name": "top_info",
+        }
+
+        return document
+
     def parseRxMulticastGroups(self, rxMulticastGroups):
         documents = []
 
         for group in rxMulticastGroups:
             fields = {
-                "s_groupip": group["groupIp"],
-                "l_pktscount": group["pktsCount"],
-                "l_bytescount": group["bytesCount"],
-                "s_lastupdate": group["lastUpdate"],
-                "s_srcip": group["srcIp"],
-                "i_srcport": group["srcPort"],
-                "i_protocoltype": group["protocolType"],
-                "i_numberofdestinations": group["numberOfDestinations"],
+                "s_groupip": group.get("groupIp"),
+                "l_pktscount": group.get("pktsCount"),
+                "l_bytescount": group.get("bytesCount"),
+                "s_lastupdate": group.get("lastUpdate"),
+                "s_srcip": group.get("srcIp"),
+                "i_srcport": group.get("srcPort"),
+                "i_protocoltype": group.get("protocolType"),
+                "i_numberofdestinations": group.get("numberOfDestinations"),
             }
 
             if group["groupIp"] in self.store.keys():

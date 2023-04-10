@@ -1,4 +1,5 @@
 import argparse
+from ipaddress import IPv4Address
 import json
 
 import requests
@@ -34,6 +35,9 @@ class WxckedEye:
         data = self.fetch()
 
         documents = []
+
+        self.store["sources"] = {}
+        self.store["destinations"] = {}
 
         if "xnicTotals" in data.keys():
             doc = self.parseXnic(data["xnicTotals"])
@@ -76,6 +80,26 @@ class WxckedEye:
                                     metricset=key.lower(), metric=k.lower()
                                 ): v
                             }
+                        )
+
+        # treat objects found in TxMulticastGroups as "sources"
+        # store the source group into the self.store keyed as the groupIp value
+        if xnicdef.get("TxMulticastGroups"):
+            for txGroup in xnicdef.get("TxMulticastGroups"):
+                if IPv4Address(txGroup.get("groupIp")).is_multicast:
+                    txGroup.update({"agent": agent})
+                    self.store["sources"].update({txGroup.get("groupIp"): txGroup})
+
+        # treat objects found in RxMulticastGroups as "destinations"
+        # store the agent into the self.store keyed as the groupIp value
+        if xnicdef.get("RxMulticastGroups"):
+            for rxGroup in xnicdef.get("RxMulticastGroups"):
+                if IPv4Address(rxGroup.get("groupIp")).is_multicast:
+                    if rxGroup.get("groupIp") in self.store["destinations"].keys():
+                        self.store["destinations"][rxGroup.get("groupIp")].append(agent)
+                    else:
+                        self.store["destinations"].update(
+                            {rxGroup.get("groupIp"): [agent]}
                         )
 
         if "NumConnections" in xnicdef.keys():
@@ -190,8 +214,11 @@ class WxckedEye:
                 "i_srcport": group.get("srcPort"),
                 "i_protocoltype": group.get("protocolType"),
                 "i_numberofdestinations": group.get("numberOfDestinations"),
+                "b_multicast": IPv4Address(group.get("groupIp")).is_multicast,
             }
 
+            # calculate bitrate if previous data is in self.store
+            # otherwise just set the bitrate to be zero
             if group["groupIp"] in self.store.keys():
                 group_prev = self.store[group["groupIp"]]
 
@@ -213,6 +240,27 @@ class WxckedEye:
             else:
                 self.store.update({group["groupIp"]: group})
                 fields.update({"l_bitrate": 0})
+
+            # Check if the groupIp is multicast.  If it is, then start finding
+            # the egress (source) and ingest (destinations[])
+            if IPv4Address(group.get("groupIp")).is_multicast:
+                if self.store["sources"].get(group.get("groupIp")):
+                    fields.update(
+                        {
+                            "s_source": self.store["sources"][group.get("groupIp")].get(
+                                "agent"
+                            )
+                        }
+                    )
+
+                if self.store["destinations"].get(group.get("groupIp")):
+                    fields.update(
+                        {
+                            "as_destinations": self.store["destinations"][
+                                group.get("groupIp")
+                            ]
+                        }
+                    )
 
             document = {
                 "fields": fields,

@@ -68,13 +68,15 @@ class WxckedEye:
             for k, v in xnicdef[key].items():
                 # parse buckets later
                 if k.lower() != "buckets":
-                    fields.update(
-                        {
-                            "l_{metricset}_{metric}".format(
-                                metricset=key.lower(), metric=k.lower()
-                            ): v
-                        }
-                    )
+                    # prevent anything bigger than a long from being used
+                    if v < 9223372036854775807:
+                        fields.update(
+                            {
+                                "l_{metricset}_{metric}".format(
+                                    metricset=key.lower(), metric=k.lower()
+                                ): v
+                            }
+                        )
 
         if "NumConnections" in xnicdef.keys():
             fields.update({"l_info_numconnections": xnicdef.get("NumConnections")})

@@ -215,6 +215,7 @@ class WxckedEye:
                 "i_protocoltype": group.get("protocolType"),
                 "i_numberofdestinations": group.get("numberOfDestinations"),
                 "b_multicast": IPv4Address(group.get("groupIp")).is_multicast,
+                "i_num_destinations": 0,
             }
 
             # calculate bitrate if previous data is in self.store
@@ -258,7 +259,10 @@ class WxckedEye:
                         {
                             "as_destinations": self.store["destinations"][
                                 group.get("groupIp")
-                            ]
+                            ],
+                            "i_num_destinations": len(
+                                self.store["destinations"][group.get("groupIp")]
+                            ),
                         }
                     )
 

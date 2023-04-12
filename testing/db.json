@@ -1,384 +1,491 @@
 {
     "dashboard": {
+        "expiresAt": "2023-05-06T13:55:47.673Z",
+        "managedResourceGroup": "cloudSwXtch",
+        "authorized": true,
+        "hostName": "cloudswxtch001",
+        "ipAddr": "10.60.30.143",
+        "swxtchName": "cloudswxtch001",
+        "subscriptionId": "c02a16cc-c49a-49c4-ab3c-ced2938ef462",
+        "remfVersion": "v1.9.16",
+        "replStatus": "running",
+        "swxtchGuid": "41150540-7a63-47c8-a0fc-de5ccb6c0fc3",
         "xnicTotals": {
-            "PktCounters": {
-                "Nic2McaTotal": 30218,
-                "Nic2McaMc": 30218,
-                "Mca2NicTotal": 31526,
-                "Mca2NicMc": 31524,
-                "Mca2NicIgmp": 6,
-                "Mca2NicDrops": 0,
-                "Nic2McaDrops": 0,
-                "Mca2KniDrops": 0,
-                "Kni2McaDrops": 0,
-                "McaPktDrops": 0,
-                "McaBigPktDrops": 0
-            },
+            "SoftwareVersion": "",
+            "RxMulticastGroups": null,
+            "IpAddress": "",
             "ByteCounters": {
-                "Nic2McaTotal": 32347812,
-                "Nic2McaMc": 32347812,
-                "Mca2NicTotal": 33795772,
-                "Mca2NicMc": 33795584
+                "Nic2McaTotal": 19030739145,
+                "Mca2NicTotal": 20475915137,
+                "Nic2McaMc": 19030739145,
+                "Mca2NicMc": 20475914867
             },
+            "Timestamp": 1681148958695638657,
             "Latencies": {
                 "Count": 0,
-                "Sum": 0,
-                "Buckets": null
+                "Buckets": null,
+                "Sum": 0
             },
-            "HARxCounters": null,
-            "Timestamp": 1657216501229157803,
-            "SoftwareVersion": "",
-            "XnicVersion": 0,
-            "RxMulticastGroups": null,
             "TxMulticastGroups": null,
+            "PktCounters": {
+                "Mca2NicTotal": 15581421,
+                "Kni2McaDrops": 0,
+                "McaBigPktDrops": 0,
+                "Mca2NicDrops": 0,
+                "McaPktDrops": 0,
+                "Mca2NicMc": 15581418,
+                "Nic2McaTotal": 14666639,
+                "Mca2NicIgmp": 15,
+                "Mca2KniDrops": 0,
+                "Nic2McaDrops": 0,
+                "Nic2McaMc": 14666639
+            },
             "XnicMode": "",
-            "NumConnections": 0
+            "NumConnections": 0,
+            "HARxCounters": null,
+            "XnicVersion": 0
         },
+        "maxPacketRateKpps": 0,
+        "isMarketplace": true,
+        "numCores": 1,
+        "replTotals": {
+            "txMulticastGroups": [
+                {
+                    "pktsCount": 6337353,
+                    "lastUpdate": "2023-04-10T17:49:18.576054811Z",
+                    "groupIp": "239.0.0.1",
+                    "protocolType": 0,
+                    "bytesCount": 8237466846,
+                    "srcPort": 0,
+                    "srcIp": null
+                },
+                {
+                    "pktsCount": 1940,
+                    "lastUpdate": "2023-04-10T17:49:04.576050758Z",
+                    "groupIp": "10.60.30.255",
+                    "protocolType": 0,
+                    "bytesCount": 578120,
+                    "srcPort": 0,
+                    "srcIp": null
+                },
+                {
+                    "pktsCount": 24027,
+                    "lastUpdate": "2023-04-10T17:49:17.576054334Z",
+                    "groupIp": "10.60.31.127",
+                    "protocolType": 0,
+                    "bytesCount": 5324134,
+                    "srcPort": 0,
+                    "srcIp": null
+                },
+                {
+                    "pktsCount": 8160975,
+                    "lastUpdate": "2023-04-10T17:49:18.576054811Z",
+                    "groupIp": "239.0.0.2",
+                    "protocolType": 0,
+                    "bytesCount": 10607872302,
+                    "srcPort": 0,
+                    "srcIp": null
+                },
+                {
+                    "pktsCount": 4776,
+                    "lastUpdate": "2023-04-10T17:33:42.275589704Z",
+                    "groupIp": "224.0.0.251",
+                    "protocolType": 0,
+                    "bytesCount": 1186836,
+                    "srcPort": 0,
+                    "srcIp": null
+                }
+            ],
+            "dropsByByteLimit": 0,
+            "sequence": 350528,
+            "rxBytes": 20242635764,
+            "rxMulticastGroups": [
+                {
+                    "pktsCount": 2811676,
+                    "lastUpdate": "2023-04-10T17:49:18.627407312Z",
+                    "groupIp": "239.50.50.1",
+                    "protocolType": 0,
+                    "bytesCount": 3908229640,
+                    "srcPort": 0,
+                    "srcIp": null
+                },
+                {
+                    "pktsCount": 6360258,
+                    "lastUpdate": "2023-04-10T17:49:18.627407312Z",
+                    "groupIp": "239.0.0.1",
+                    "protocolType": 0,
+                    "bytesCount": 8267253716,
+                    "srcPort": 0,
+                    "srcIp": null
+                },
+                {
+                    "pktsCount": 1940,
+                    "lastUpdate": "2023-04-10T17:49:04.563064336Z",
+                    "groupIp": "10.60.30.255",
+                    "protocolType": 0,
+                    "bytesCount": 578120,
+                    "srcPort": 0,
+                    "srcIp": null
+                },
+                {
+                    "pktsCount": 24027,
+                    "lastUpdate": "2023-04-10T17:49:17.511620283Z",
+                    "groupIp": "10.60.31.127",
+                    "protocolType": 0,
+                    "bytesCount": 5324134,
+                    "srcPort": 0,
+                    "srcIp": null
+                },
+                {
+                    "pktsCount": 6201323,
+                    "lastUpdate": "2023-04-10T17:49:18.627407312Z",
+                    "groupIp": "239.0.0.2",
+                    "protocolType": 0,
+                    "bytesCount": 8060665682,
+                    "srcPort": 0,
+                    "srcIp": null
+                },
+                {
+                    "pktsCount": 2352,
+                    "lastUpdate": "2023-04-10T17:33:42.197618246Z",
+                    "groupIp": "224.0.0.251",
+                    "protocolType": 0,
+                    "bytesCount": 584472,
+                    "srcPort": 0,
+                    "srcIp": null
+                }
+            ],
+            "txCount": 14529071,
+            "rxBridgeCount": 0,
+            "rxBridgeBytes": 0,
+            "rxUnicastPktCount": 0,
+            "txUnicastPktCount": 0,
+            "txMeshBytes": 0,
+            "rxMeshBytes": 0,
+            "rxUnicastBytes": 0,
+            "txUnicastBytes": 0,
+            "txBytes": 18852428238,
+            "txMeshPktCount": 0,
+            "rxCount": 15401576,
+            "host": "10.60.31.6",
+            "dropsByCountLimit": 0,
+            "rxMeshPktCount": 0,
+            "timestamp": 1681148958672524754
+        },
+        "billingPlan": "Evertz New NAB 2023",
+        "maxBandwidthMbps": 3000,
+        "cloud": "",
         "xnics": {
-            "Agent-1": {
-                "PktCounters": {
-                    "Nic2McaTotal": 75,
-                    "Nic2McaMc": 75,
-                    "Mca2NicTotal": 31516,
-                    "Mca2NicMc": 31516,
-                    "Mca2NicIgmp": 2,
-                    "Mca2NicDrops": 0,
-                    "Nic2McaDrops": 0,
-                    "Mca2KniDrops": 0,
-                    "Kni2McaDrops": 0,
-                    "McaPktDrops": 0,
-                    "McaBigPktDrops": 0
-                },
-                "ByteCounters": {
-                    "Nic2McaTotal": 8754,
-                    "Nic2McaMc": 8754,
-                    "Mca2NicTotal": 33794704,
-                    "Mca2NicMc": 33794704
-                },
-                "Latencies": {
-                    "Count": 0,
-                    "Sum": 0,
-                    "Buckets": {
-                        "0.000050": 0,
-                        "0.000100": 0,
-                        "0.000250": 0,
-                        "0.000500": 0,
-                        "0.001000": 0,
-                        "0.002000": 0,
-                        "0.005000": 0,
-                        "0.010000": 0,
-                        "0.011000": 0
+            "swxtch-VUE-2": {
+                "SoftwareVersion": "v1.9.67",
+                "RxMulticastGroups": [
+                    {
+                        "pktsCount": 16650,
+                        "lastUpdate": "2023-04-10T17:49:18.365610837Z",
+                        "groupIp": "10.60.31.127",
+                        "protocolType": 0,
+                        "bytesCount": 3919159,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 2382,
+                        "lastUpdate": "2023-04-10T17:49:18.365611076Z",
+                        "groupIp": "224.0.0.251",
+                        "protocolType": 0,
+                        "bytesCount": 591468,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 986,
+                        "lastUpdate": "2023-04-10T17:49:18.365611314Z",
+                        "groupIp": "10.60.30.255",
+                        "protocolType": 0,
+                        "bytesCount": 293828,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 6474386,
+                        "lastUpdate": "2023-04-10T17:49:18.365611791Z",
+                        "groupIp": "239.0.0.1",
+                        "protocolType": 0,
+                        "bytesCount": 8415584348,
+                        "srcPort": 0,
+                        "srcIp": null
                     }
-                },
-                "HARxCounters": [],
-                "Timestamp": 1657216501229157803,
-                "SoftwareVersion": "v1.7.4.draft",
-                "XnicVersion": 2
-            },
-            "Agent-2": {
-                "PktCounters": {
-                    "Nic2McaTotal": 30107,
-                    "Nic2McaMc": 30107,
-                    "Mca2NicTotal": 0,
-                    "Mca2NicMc": 0,
-                    "Mca2NicIgmp": 2,
-                    "Mca2NicDrops": 0,
-                    "Nic2McaDrops": 0,
-                    "Mca2KniDrops": 0,
-                    "Kni2McaDrops": 0,
-                    "McaPktDrops": 0,
-                    "McaBigPktDrops": 0
-                },
+                ],
+                "IpAddress": "10.60.31.5",
                 "ByteCounters": {
-                    "Nic2McaTotal": 32334918,
-                    "Nic2McaMc": 32334918,
-                    "Mca2NicTotal": 0,
-                    "Mca2NicMc": 0
+                    "Nic2McaTotal": 8420388803,
+                    "Mca2NicTotal": 8062874958,
+                    "Nic2McaMc": 8420388803,
+                    "Mca2NicMc": 8062874958
                 },
+                "Timestamp": 1681148958365513560,
                 "Latencies": {
-                    "Count": 0,
-                    "Sum": 0,
+                    "Count": 6494404,
                     "Buckets": {
-                        "0.000050": 0,
-                        "0.000100": 0,
-                        "0.000250": 0,
-                        "0.000500": 0,
-                        "0.001000": 0,
-                        "0.002000": 0,
-                        "0.005000": 0,
-                        "0.010000": 0,
-                        "0.011000": 0
-                    }
+                        "0.010000": 5714122,
+                        "0.000100": 65774,
+                        "0.002000": 2811574,
+                        "0.011000": 5714314,
+                        "0.000500": 346542,
+                        "0.000050": 33601,
+                        "0.000250": 157416,
+                        "0.001000": 1770858,
+                        "0.005000": 5698916
+                    },
+                    "Sum": 15495265032506997000
                 },
-                "HARxCounters": [],
-                "Timestamp": 1657216500709825713,
-                "SoftwareVersion": "v1.7.4.draft",
-                "XnicVersion": 2
-            },
-            "Agent-3": {
+                "TxMulticastGroups": [
+                    {
+                        "pktsCount": 7776,
+                        "lastUpdate": "2023-04-10T17:49:18.365612983Z",
+                        "groupIp": "10.60.31.127",
+                        "protocolType": 0,
+                        "bytesCount": 1493064,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 6201195,
+                        "lastUpdate": "2023-04-10T17:49:18.365612983Z",
+                        "groupIp": "239.0.0.2",
+                        "protocolType": 0,
+                        "bytesCount": 8060496598,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 2382,
+                        "lastUpdate": "2023-04-10T17:49:18.36561346Z",
+                        "groupIp": "224.0.0.251",
+                        "protocolType": 0,
+                        "bytesCount": 591468,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 986,
+                        "lastUpdate": "2023-04-10T17:49:18.36561346Z",
+                        "groupIp": "10.60.30.255",
+                        "protocolType": 0,
+                        "bytesCount": 293828,
+                        "srcPort": 0,
+                        "srcIp": null
+                    }
+                ],
                 "PktCounters": {
-                    "Nic2McaTotal": 18,
-                    "Nic2McaMc": 18,
-                    "Mca2NicTotal": 9,
-                    "Mca2NicMc": 8,
-                    "Mca2NicIgmp": 1,
-                    "Mca2NicDrops": 0,
-                    "Nic2McaDrops": 0,
-                    "Mca2KniDrops": 0,
+                    "Mca2NicTotal": 6212339,
                     "Kni2McaDrops": 0,
-                    "McaPktDrops": 0,
-                    "McaBigPktDrops": 0
-                },
-                "ByteCounters": {
-                    "Nic2McaTotal": 2070,
-                    "Nic2McaMc": 2070,
-                    "Mca2NicTotal": 974,
-                    "Mca2NicMc": 880
-                },
-                "Latencies": {
-                    "Count": 18,
-                    "Sum": 302211676294169800,
-                    "Buckets": {
-                        "0.000050": 0,
-                        "0.000100": 0,
-                        "0.000250": 0,
-                        "0.000500": 0,
-                        "0.001000": 0,
-                        "0.002000": 0,
-                        "0.005000": 0,
-                        "0.010000": 0,
-                        "0.011000": 0
-                    }
-                },
-                "HARxCounters": [],
-                "Timestamp": 1657216500559694400,
-                "SoftwareVersion": "v1.7.4.draft",
-                "XnicVersion": 2
-            },
-            "Agent-4": {
-                "PktCounters": {
-                    "Nic2McaTotal": 18,
-                    "Nic2McaMc": 18,
-                    "Mca2NicTotal": 1,
-                    "Mca2NicMc": 0,
-                    "Mca2NicIgmp": 1,
+                    "McaBigPktDrops": 0,
                     "Mca2NicDrops": 0,
-                    "Nic2McaDrops": 0,
-                    "Mca2KniDrops": 0,
-                    "Kni2McaDrops": 0,
                     "McaPktDrops": 0,
-                    "McaBigPktDrops": 0
+                    "Mca2NicMc": 6212339,
+                    "Nic2McaTotal": 6494404,
+                    "Mca2NicIgmp": 10,
+                    "Mca2KniDrops": 0,
+                    "Nic2McaDrops": 0,
+                    "Nic2McaMc": 6494404
                 },
-                "ByteCounters": {
-                    "Nic2McaTotal": 2070,
-                    "Nic2McaMc": 2070,
-                    "Mca2NicTotal": 94,
-                    "Mca2NicMc": 0
-                },
-                "Latencies": {
-                    "Count": 18,
-                    "Sum": 302211676294180540,
-                    "Buckets": {
-                        "0.000050": 0,
-                        "0.000100": 0,
-                        "0.000250": 0,
-                        "0.000500": 0,
-                        "0.001000": 0,
-                        "0.002000": 0,
-                        "0.005000": 0,
-                        "0.010000": 0,
-                        "0.011000": 0
-                    }
-                },
+                "XnicMode": "Normal",
+                "NumConnections": 1,
                 "HARxCounters": [],
-                "Timestamp": 1657216500954028100,
-                "SoftwareVersion": "v1.7.4.draft",
                 "XnicVersion": 2
             },
             "swxtch-VUE-1": {
-                "PktCounters": {
-                    "Nic2McaTotal": 7,
-                    "Nic2McaMc": 7,
-                    "Mca2NicTotal": 0,
-                    "Mca2NicMc": 0,
-                    "Mca2NicIgmp": 0,
-                    "Mca2NicDrops": 0,
-                    "Nic2McaDrops": 0,
-                    "Mca2KniDrops": 0,
-                    "Kni2McaDrops": 0,
-                    "McaPktDrops": 0,
-                    "McaBigPktDrops": 0
-                },
-                "ByteCounters": {
-                    "Nic2McaTotal": 1215,
-                    "Nic2McaMc": 1215,
-                    "Mca2NicTotal": 0,
-                    "Mca2NicMc": 0
-                },
-                "Latencies": {
-                    "Count": 7,
-                    "Sum": 11765543747920616,
-                    "Buckets": {
-                        "0.000050": 0,
-                        "0.000100": 0,
-                        "0.000250": 0,
-                        "0.000500": 0,
-                        "0.001000": 0,
-                        "0.002000": 0,
-                        "0.005000": 0,
-                        "0.010000": 0,
-                        "0.011000": 0
-                    }
-                },
-                "HARxCounters": [],
-                "Timestamp": 1680792015049626034,
-                "IpAddress": "10.60.31.4",
-                "SoftwareVersion": "v1.9.16",
-                "XnicVersion": 2,
+                "SoftwareVersion": "v1.9.67",
                 "RxMulticastGroups": [
                     {
-                        "groupIp": "224.0.0.251",
-                        "pktsCount": 7,
-                        "bytesCount": 1215,
-                        "lastUpdate": "2023-04-06T14:40:15.049700021Z",
-                        "srcIp": null,
+                        "pktsCount": 7776,
+                        "lastUpdate": "2023-04-10T17:49:18.695723056Z",
+                        "groupIp": "10.60.31.127",
+                        "protocolType": 0,
+                        "bytesCount": 1493064,
                         "srcPort": 0,
-                        "protocolType": 0
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 6188589,
+                        "lastUpdate": "2023-04-10T17:49:18.695723295Z",
+                        "groupIp": "239.0.0.2",
+                        "protocolType": 0,
+                        "bytesCount": 8044108086,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 2382,
+                        "lastUpdate": "2023-04-10T17:49:18.695723772Z",
+                        "groupIp": "224.0.0.251",
+                        "protocolType": 0,
+                        "bytesCount": 591468,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 986,
+                        "lastUpdate": "2023-04-10T17:49:18.695723772Z",
+                        "groupIp": "10.60.30.255",
+                        "protocolType": 0,
+                        "bytesCount": 293828,
+                        "srcPort": 0,
+                        "srcIp": null
                     }
                 ],
-                "TxMulticastGroups": null,
-                "XnicMode": "Normal",
-                "NumConnections": 1
-            },
-            "swxtch-VUE-2": {
-                "PktCounters": {
-                    "Nic2McaTotal": 0,
-                    "Nic2McaMc": 0,
-                    "Mca2NicTotal": 0,
-                    "Mca2NicMc": 0,
-                    "Mca2NicIgmp": 0,
-                    "Mca2NicDrops": 0,
-                    "Nic2McaDrops": 0,
-                    "Mca2KniDrops": 0,
-                    "Kni2McaDrops": 0,
-                    "McaPktDrops": 0,
-                    "McaBigPktDrops": 0
-                },
+                "IpAddress": "10.60.31.4",
                 "ByteCounters": {
-                    "Nic2McaTotal": 0,
-                    "Nic2McaMc": 0,
-                    "Mca2NicTotal": 0,
-                    "Mca2NicMc": 0
+                    "Nic2McaTotal": 8046486446,
+                    "Mca2NicTotal": 8504831119,
+                    "Nic2McaMc": 8046486446,
+                    "Mca2NicMc": 8504831119
                 },
+                "Timestamp": 1681148958695638657,
                 "Latencies": {
-                    "Count": 0,
-                    "Sum": 0,
+                    "Count": 6199733,
                     "Buckets": {
-                        "0.000050": 0,
-                        "0.000100": 0,
-                        "0.000250": 0,
-                        "0.000500": 0,
-                        "0.001000": 0,
-                        "0.002000": 0,
-                        "0.005000": 0,
-                        "0.010000": 0,
-                        "0.011000": 0
-                    }
+                        "0.010000": 3366203,
+                        "0.000100": 81629,
+                        "0.002000": 2644092,
+                        "0.011000": 3366230,
+                        "0.000500": 407076,
+                        "0.000050": 39937,
+                        "0.000250": 205483,
+                        "0.001000": 937258,
+                        "0.005000": 3363396
+                    },
+                    "Sum": 8965117621681381000
                 },
-                "HARxCounters": [],
-                "Timestamp": 1680792015693460907,
-                "IpAddress": "10.60.31.5",
-                "SoftwareVersion": "v1.9.16",
-                "XnicVersion": 2,
-                "RxMulticastGroups": null,
-                "TxMulticastGroups": null,
+                "TxMulticastGroups": [
+                    {
+                        "pktsCount": 986,
+                        "lastUpdate": "2023-04-10T17:49:18.695724725Z",
+                        "groupIp": "10.60.30.255",
+                        "protocolType": 0,
+                        "bytesCount": 293828,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 16652,
+                        "lastUpdate": "2023-04-10T17:49:18.695724964Z",
+                        "groupIp": "10.60.31.127",
+                        "protocolType": 0,
+                        "bytesCount": 3919755,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 6539780,
+                        "lastUpdate": "2023-04-10T17:49:18.695724964Z",
+                        "groupIp": "239.0.0.1",
+                        "protocolType": 0,
+                        "bytesCount": 8500617536,
+                        "srcPort": 0,
+                        "srcIp": null
+                    }
+                ],
+                "PktCounters": {
+                    "Mca2NicTotal": 6557418,
+                    "Kni2McaDrops": 0,
+                    "McaBigPktDrops": 0,
+                    "Mca2NicDrops": 0,
+                    "McaPktDrops": 0,
+                    "Mca2NicMc": 6557418,
+                    "Nic2McaTotal": 6199733,
+                    "Mca2NicIgmp": 2,
+                    "Mca2KniDrops": 0,
+                    "Nic2McaDrops": 0,
+                    "Nic2McaMc": 6199733
+                },
                 "XnicMode": "Normal",
-                "NumConnections": 1
+                "NumConnections": 1,
+                "HARxCounters": [],
+                "XnicVersion": 2
+            },
+            "cvip-nab-demo": {
+                "SoftwareVersion": "v1.9.16",
+                "RxMulticastGroups": [
+                    {
+                        "pktsCount": 1972454,
+                        "lastUpdate": "2023-04-10T17:49:18.598840236Z",
+                        "groupIp": "239.0.0.2",
+                        "protocolType": 0,
+                        "bytesCount": 2563851968,
+                        "srcPort": 0,
+                        "srcIp": null
+                    },
+                    {
+                        "pktsCount": 48,
+                        "lastUpdate": "2023-04-10T17:49:18.598840475Z",
+                        "groupIp": "224.0.0.251",
+                        "protocolType": 0,
+                        "bytesCount": 11928,
+                        "srcPort": 0,
+                        "srcIp": null
+                    }
+                ],
+                "IpAddress": "10.60.31.7",
+                "ByteCounters": {
+                    "Nic2McaTotal": 2563863896,
+                    "Mca2NicTotal": 3908209060,
+                    "Nic2McaMc": 2563863896,
+                    "Mca2NicMc": 3908208790
+                },
+                "Timestamp": 1681148958598828409,
+                "Latencies": {
+                    "Count": 1972502,
+                    "Buckets": {
+                        "0.010000": 0,
+                        "0.000100": 0,
+                        "0.002000": 0,
+                        "0.011000": 0,
+                        "0.000500": 0,
+                        "0.000050": 0,
+                        "0.000250": 0,
+                        "0.001000": 0,
+                        "0.005000": 0
+                    },
+                    "Sum": 14097397389908640000
+                },
+                "TxMulticastGroups": [
+                    {
+                        "pktsCount": 2811661,
+                        "lastUpdate": "2023-04-10T17:49:18.598841428Z",
+                        "groupIp": "239.50.50.1",
+                        "protocolType": 0,
+                        "bytesCount": 3908208790,
+                        "srcPort": 0,
+                        "srcIp": null
+                    }
+                ],
+                "PktCounters": {
+                    "Mca2NicTotal": 2811664,
+                    "Kni2McaDrops": 0,
+                    "McaBigPktDrops": 0,
+                    "Mca2NicDrops": 0,
+                    "McaPktDrops": 0,
+                    "Mca2NicMc": 2811661,
+                    "Nic2McaTotal": 1972502,
+                    "Mca2NicIgmp": 3,
+                    "Mca2KniDrops": 0,
+                    "Nic2McaDrops": 0,
+                    "Nic2McaMc": 1972502
+                },
+                "XnicMode": "Normal",
+                "NumConnections": 1,
+                "HARxCounters": [],
+                "XnicVersion": 1
             }
         },
-        "replTotals": {
-            "host": "",
-            "sequence": 95924,
-            "rxCount": 31535,
-            "txCount": 30332,
-            "rxBytes": 33796794,
-            "txBytes": 32361180,
-            "rxBridgeBytes": 0,
-            "rxBridgeCount": 0,
-            "timestamp": 1657216500274611599,
-            "dropsByByteLimit": 0,
-            "dropsByCountLimit": 0,
-            "rxMeshPktCount": 0,
-            "rxMeshBytes": 0,
-            "txMeshPktCount": 0,
-            "txMeshBytes": 0,
-            "rxUnicastPktCount": 0,
-            "rxUnicastBytes": 0,
-            "txUnicastPktCount": 0,
-            "txUnicastBytes": 0,
-            "rxMulticastGroups": [
-                {
-                    "groupIp": "239.1.1.3",
-                    "pktsCount": 31460,
-                    "bytesCount": 33788040,
-                    "lastUpdate": "2022-07-07T15:29:00.789006233Z",
-                    "srcIp": null,
-                    "srcPort": 0,
-                    "protocolType": 0,
-                    "numberOfDestinations": 0
-                },
-                {
-                    "groupIp": "239.0.0.251",
-                    "pktsCount": 75,
-                    "bytesCount": 8754,
-                    "lastUpdate": "2022-07-07T17:54:49.132519721Z",
-                    "srcIp": null,
-                    "srcPort": 0,
-                    "protocolType": 0,
-                    "numberOfDestinations": 0
-                },
-                {
-                    "groupIp": "224.0.0.251",
-                    "pktsCount": 142,
-                    "bytesCount": 24842,
-                    "lastUpdate": "2023-04-06T14:39:28.8706851Z",
-                    "srcIp": null,
-                    "srcPort": 0,
-                    "protocolType": 0
-                }
-            ],
-            "txMulticastGroups": [
-                {
-                    "groupIp": "224.0.0.251",
-                    "pktsCount": 7,
-                    "bytesCount": 1215,
-                    "lastUpdate": "2023-04-06T14:39:28.830584287Z",
-                    "srcIp": null,
-                    "srcPort": 0,
-                    "protocolType": 0
-                }
-            ]
+        "resourceGroup": "cloudSwXtch",
+        "meshes": {
+            "switches": null
         },
-        "subscriptionId": "d723b93f-112c-49fb-9fda-03d3ada867f3",
-        "hostName": "dsd-core-174",
-        "numCores": 8,
-        "replStatus": "running",
-        "authorized": true,
-        "validationResult": {
-            "switch": 556,
-            "authorized": true,
-            "denialReason": null,
-            "trialPeriod": {
-                "startDate": "2021-12-22T19:38:33.565336Z",
-                "endDate": "2022-08-21T19:38:33.565Z"
-            },
-            "applicationId": null,
-            "isMarketplace": true,
-            "meshes": {
-                "uid": "DF91521E-7202-A3C2-8156-1FF5070545E9",
-                "swxtches": ["10.2.128.10", "10.5.1.6"]
-            },
-            "expiresAt": "2033-04-05T21:09:00Z"
-        }
+        "validationResult": null,
+        "serviceStatus": "running",
+        "maxClientCount": 10
     }
 }

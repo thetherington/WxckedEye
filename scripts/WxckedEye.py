@@ -5,6 +5,7 @@ import json
 import requests
 import urllib3
 from dateutil import parser
+from quantiphy import Quantity
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 requests.packages.urllib3.disable_warnings()
@@ -301,6 +302,10 @@ class WxckedEye:
 
         if "slaves" in timesyncinfo.keys() and len(timesyncinfo["slaves"]) > 0:
             for slave in timesyncinfo["slaves"]:
+                
+                rootoffset = Quantity(slave.get("rootoffset"), units="s", scale=0.001)
+                localoffset = Quantity(slave.get("localoffset"), units="s", scale=0.001)
+                
                 fields = {
                     "s_name": slave.get("name"),
                     "b_xnicpresent": slave.get("xnicPresent"),
@@ -309,6 +314,8 @@ class WxckedEye:
                     "d_rootoffset_ms": slave.get("rootoffset"),
                     "d_localoffset_us": slave.get("localoffset") * 1000,
                     "d_rootoffsetns_us": slave.get("rootoffset") * 1000,
+                    "s_rootoffset": rootoffset.render(),
+                    "s_localoffset": localoffset.render()
                 }
 
                 self.store["slaves"].update({slave.get("name"): fields})

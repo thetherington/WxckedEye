@@ -38,6 +38,11 @@ class WxckedEye:
 
         self.store["sources"] = {}
         self.store["destinations"] = {}
+        self.store["slaves"] = {}
+
+        if "timeSyncInfo" in data.keys():
+            docs = self.parseTimeSyncInfo(data["timeSyncInfo"])
+            documents.extend(docs)
 
         if "xnicTotals" in data.keys():
             doc = self.parseXnic(data["xnicTotals"])
@@ -273,6 +278,48 @@ class WxckedEye:
             }
 
             documents.append(document)
+
+        return documents
+
+    def parseTimeSyncInfo(self, timesyncinfo):
+        documents = []
+
+        if "master" in timesyncinfo.keys():
+            fields = {
+                "s_name": timesyncinfo["master"].get("name"),
+                "s_displayname": timesyncinfo["master"].get("displayname"),
+                "s_type": timesyncinfo["master"].get("type"),
+            }
+
+            document = {
+                "fields": fields,
+                "host": self.host,
+                "name": "timesyncmaster",
+            }
+
+            documents.append(document)
+
+        if "slaves" in timesyncinfo.keys() and len(timesyncinfo["slaves"]) > 0:
+            for slave in timesyncinfo["slaves"]:
+                fields = {
+                    "s_name": slave.get("name"),
+                    "b_xnicpresent": slave.get("xnicPresent"),
+                    "b_timebeatpresent": slave.get("timebeatPresent"),
+                    "d_localoffset_ms": slave.get("localoffset"),
+                    "d_rootoffset_ms": slave.get("rootoffset"),
+                    "d_localoffset_us": slave.get("localoffset") * 1000,
+                    "d_rootoffsetns_us": slave.get("rootoffset") * 1000,
+                }
+
+                self.store["slaves"].update({slave.get("name"): fields})
+
+                document = {
+                    "fields": fields,
+                    "host": self.host,
+                    "name": "timesyncslave",
+                }
+
+                documents.append(document)
 
         return documents
 

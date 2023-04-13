@@ -5,7 +5,6 @@ import json
 import requests
 import urllib3
 from dateutil import parser
-from quantiphy import Quantity
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 requests.packages.urllib3.disable_warnings()
@@ -283,6 +282,8 @@ class WxckedEye:
         return documents
 
     def parseTimeSyncInfo(self, timesyncinfo):
+        from quantiphy import Quantity
+        
         documents = []
 
         if "master" in timesyncinfo.keys():

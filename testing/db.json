@@ -486,36 +486,6 @@
         },
         "validationResult": null,
         "serviceStatus": "running",
-        "maxClientCount": 10,
-        "timeSyncInfo": {
-            "master": {
-                "name": "dsd-core-100",
-                "displayname": "phc:/dev/ptp_hyperv",
-                "type": "primary"
-            },
-            "slaves": [
-                {
-                    "name": "DSd-agent-101",
-                    "xnicPresent": true,
-                    "timebeatPresent": true,
-                    "localoffset": 2583.191489,
-                    "rootoffset": 25252.329102
-                },
-                {
-                    "name": "DSd-agent-102",
-                    "xnicPresent": true,
-                    "timebeatPresent": true,
-                    "localoffset": 2667.393258,
-                    "rootoffset": 17995.431641
-                },
-                {
-                    "name": "dsd-win11-100",
-                    "xnicPresent": true,
-                    "timebeatPresent": true,
-                    "localoffset": 2750.333333,
-                    "rootoffset": 6184.550456
-                }
-            ]
-        }
+        "maxClientCount": 10
     }
 }

@@ -16,12 +16,19 @@ app.use(morgan("dev"));
 const data = readFileSync("./db.json");
 const db = JSON.parse(data);
 
+const timing_data = readFileSync("./timing_db.json");
+const timing_db = JSON.parse(timing_data);
+
 resetCounters();
 
 app.get("/api/wxckedeye/v1/dashboard", (req, res) => {
     incrementCounters();
 
     res.send(db.dashboard);
+});
+
+app.get("/api/wxckedeye/v1/prepareTimeSync", (req, res) => {
+    res.send(timing_db);
 });
 
 app.listen(port, () =>

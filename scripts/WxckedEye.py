@@ -16,13 +16,15 @@ class WxckedEye:
         self.proto = proto
         self.port = port
         self.api = "api/wxckedeye/v1/dashboard"
+        self.time_sync_api = "api/wxckedeye/v1/prepareTimeSync"
 
         self.store = {}
 
-    def fetch(self):
-        url = "{proto}://{host}:{port}/{api}".format(
-            proto=self.proto, host=self.host, port=self.port, api=self.api
-        )
+    def fetch(self, url=None):
+        if not url:
+            url = "{proto}://{host}:{port}/{api}".format(
+                proto=self.proto, host=self.host, port=self.port, api=self.api
+            )
 
         resp = requests.get(url, verify=False, timeout=10)
         resp.close()
@@ -39,10 +41,6 @@ class WxckedEye:
         self.store["sources"] = {}
         self.store["destinations"] = {}
         self.store["slaves"] = {}
-
-        if "timeSyncInfo" in data.keys():
-            docs = self.parseTimeSyncInfo(data["timeSyncInfo"])
-            documents.extend(docs)
 
         if "xnicTotals" in data.keys():
             doc = self.parseXnic(data["xnicTotals"])
@@ -67,6 +65,18 @@ class WxckedEye:
                 documents.extend(docs)
 
         documents.append(self.parseTopLevel(data))
+        
+        
+        url = "{proto}://{host}:{port}/{api}".format(
+            proto=self.proto, host=self.host, port=self.port, api=self.time_sync_api
+        )
+        
+        data = self.fetch(url)
+        
+        if isinstance(data, dict):
+            docs = self.parseTimeSyncInfo(data)
+            documents.extend(docs)
+
 
         return documents
 
@@ -304,8 +314,15 @@ class WxckedEye:
         if "slaves" in timesyncinfo.keys() and len(timesyncinfo["slaves"]) > 0:
             for slave in timesyncinfo["slaves"]:
                 
-                rootoffset = Quantity(slave.get("rootoffset"), units="s", scale=0.001)
-                localoffset = Quantity(slave.get("localoffset"), units="s", scale=0.001)
+                try:
+                    rootoffset = Quantity(slave.get("rootoffset"), units="s", scale=0.001)
+                except Exception:
+                    rootoffset = Quantity(0, units="s", scale=0.001)
+                
+                try:
+                    localoffset = Quantity(slave.get("localoffset"), units="s", scale=0.001)
+                except Exception:
+                    localoffset = Quantity(0, units="s", scale=0.001)
                 
                 fields = {
                     "s_name": slave.get("name"),
@@ -313,8 +330,8 @@ class WxckedEye:
                     "b_timebeatpresent": slave.get("timebeatPresent"),
                     "d_localoffset_ms": slave.get("localoffset"),
                     "d_rootoffset_ms": slave.get("rootoffset"),
-                    "d_localoffset_us": slave.get("localoffset") * 1000,
-                    "d_rootoffsetns_us": slave.get("rootoffset") * 1000,
+                    "d_localoffset_us": slave.get("localoffset") * 1000 if slave.get("localoffset") else None,
+                    "d_rootoffsetns_us": slave.get("rootoffset") * 1000 if slave.get("rootoffset") else None,
                     "s_rootoffset": rootoffset.render(),
                     "s_localoffset": localoffset.render()
                 }

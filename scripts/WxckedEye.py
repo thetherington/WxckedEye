@@ -327,7 +327,7 @@ class WxckedEye:
                 fields = {
                     "s_name": slave.get("name"),
                     "b_xnicpresent": slave.get("xnicPresent"),
-                    "b_timebeatpresent": slave.get("timebeatPresent"),
+                    "b_timebeatpresent": slave.get("timebeatPresent") if slave.get("timebeatPresent") else False,
                     "d_localoffset_ms": slave.get("localoffset"),
                     "d_rootoffset_ms": slave.get("rootoffset"),
                     "d_localoffset_us": slave.get("localoffset") * 1000 if slave.get("localoffset") else None,

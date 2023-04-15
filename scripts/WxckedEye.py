@@ -328,10 +328,10 @@ class WxckedEye:
                     "s_name": slave.get("name"),
                     "b_xnicpresent": slave.get("xnicPresent"),
                     "b_timebeatpresent": slave.get("timebeatPresent") if slave.get("timebeatPresent") else False,
-                    "d_localoffset_ms": slave.get("localoffset"),
-                    "d_rootoffset_ms": slave.get("rootoffset"),
-                    "d_localoffset_us": slave.get("localoffset") * 1000 if slave.get("localoffset") else None,
-                    "d_rootoffsetns_us": slave.get("rootoffset") * 1000 if slave.get("rootoffset") else None,
+                    "d_localoffset_ms": round(slave.get("localoffset") / 1000000, 5) if slave.get("localoffset") else None,
+                    "d_rootoffset_ms": round(slave.get("rootoffset") / 1000000, 5) if slave.get("rootoffset") else None,
+                    "d_localoffset_us": round(slave.get("localoffset") / 1000, 3) if slave.get("localoffset") else None,
+                    "d_rootoffset_us": round(slave.get("rootoffset") / 1000, 3) if slave.get("rootoffset") else None,
                     "s_rootoffset": rootoffset.render(),
                     "s_localoffset": localoffset.render()
                 }

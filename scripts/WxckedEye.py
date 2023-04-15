@@ -315,14 +315,14 @@ class WxckedEye:
             for slave in timesyncinfo["slaves"]:
                 
                 try:
-                    rootoffset = Quantity(slave.get("rootoffset"), units="s", scale=0.001)
+                    rootoffset = Quantity(slave.get("rootoffset"), units="s", scale=0.000000001)
                 except Exception:
-                    rootoffset = Quantity(0, units="s", scale=0.001)
+                    rootoffset = Quantity(0, units="s", scale=0.000000001)
                 
                 try:
-                    localoffset = Quantity(slave.get("localoffset"), units="s", scale=0.001)
+                    localoffset = Quantity(slave.get("localoffset"), units="s", scale=0.000000001)
                 except Exception:
-                    localoffset = Quantity(0, units="s", scale=0.001)
+                    localoffset = Quantity(0, units="s", scale=0.000000001)
                 
                 fields = {
                     "s_name": slave.get("name"),

@@ -11,12 +11,12 @@ requests.packages.urllib3.disable_warnings()
 
 
 class WxckedEye:
-    def __init__(self, host, port=80, proto="http"):
+    def __init__(self, host, port=80, proto="http", timing_api=False):
         self.host = host
         self.proto = proto
         self.port = port
         self.api = "api/wxckedeye/v1/dashboard"
-        self.time_sync_api = "api/wxckedeye/v1/prepareTimeSync"
+        self.time_sync_api = "api/wxckedeye/v1/prepareTimeSync" if timing_api else None
 
         self.store = {}
 
@@ -65,17 +65,18 @@ class WxckedEye:
                 documents.extend(docs)
 
         documents.append(self.parseTopLevel(data))
-        
-        
-        url = "{proto}://{host}:{port}/{api}".format(
-            proto=self.proto, host=self.host, port=self.port, api=self.time_sync_api
-        )
-        
-        data = self.fetch(url)
-        
-        if isinstance(data, dict):
-            docs = self.parseTimeSyncInfo(data)
-            documents.extend(docs)
+
+        if self.time_sync_api:
+
+            url = "{proto}://{host}:{port}/{api}".format(
+                proto=self.proto, host=self.host, port=self.port, api=self.time_sync_api
+            )
+
+            data = self.fetch(url)
+
+            if isinstance(data, dict):
+                docs = self.parseTimeSyncInfo(data)
+                documents.extend(docs)
 
 
         return documents
@@ -400,10 +401,19 @@ def main():
         help="Re-run the collection",
     )
 
+    args_parser.add_argument(
+        "-t",
+        "--timesync",
+        required=False,
+        default=False,
+        action="store_true",
+        help="Collect TimeSync Metrics (quantiphy package needed)",
+    )
+
     args = args_parser.parse_args()
 
     collector = WxckedEye(
-        host=args.swxtch_host, port=args.swxtch_port, proto=args.swxtch_protocol
+        host=args.swxtch_host, port=args.swxtch_port, proto=args.swxtch_protocol, timing_api=args.timesync
     )
 
     if args.dump:

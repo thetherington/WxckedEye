@@ -11,18 +11,20 @@ requests.packages.urllib3.disable_warnings()
 
 
 class WxckedEye:
-    def __init__(self, host, port=80, proto="http"):
+    def __init__(self, host, port=80, proto="http", timing_api=False):
         self.host = host
         self.proto = proto
         self.port = port
         self.api = "api/wxckedeye/v1/dashboard"
+        self.time_sync_api = "api/wxckedeye/v1/prepareTimeSync" if timing_api else None
 
         self.store = {}
 
-    def fetch(self):
-        url = "{proto}://{host}:{port}/{api}".format(
-            proto=self.proto, host=self.host, port=self.port, api=self.api
-        )
+    def fetch(self, url=None):
+        if not url:
+            url = "{proto}://{host}:{port}/{api}".format(
+                proto=self.proto, host=self.host, port=self.port, api=self.api
+            )
 
         resp = requests.get(url, verify=False, timeout=10)
         resp.close()
@@ -38,6 +40,7 @@ class WxckedEye:
 
         self.store["sources"] = {}
         self.store["destinations"] = {}
+        self.store["slaves"] = {}
 
         if "xnicTotals" in data.keys():
             doc = self.parseXnic(data["xnicTotals"])
@@ -62,6 +65,19 @@ class WxckedEye:
                 documents.extend(docs)
 
         documents.append(self.parseTopLevel(data))
+
+        if self.time_sync_api:
+
+            url = "{proto}://{host}:{port}/{api}".format(
+                proto=self.proto, host=self.host, port=self.port, api=self.time_sync_api
+            )
+
+            data = self.fetch(url)
+
+            if isinstance(data, dict):
+                docs = self.parseTimeSyncInfo(data)
+                documents.extend(docs)
+
 
         return documents
 
@@ -276,6 +292,63 @@ class WxckedEye:
 
         return documents
 
+    def parseTimeSyncInfo(self, timesyncinfo):
+        from quantiphy import Quantity
+        
+        documents = []
+
+        if "master" in timesyncinfo.keys():
+            fields = {
+                "s_name": timesyncinfo["master"].get("name"),
+                "s_displayname": timesyncinfo["master"].get("displayname"),
+                "s_type": timesyncinfo["master"].get("type"),
+            }
+
+            document = {
+                "fields": fields,
+                "host": self.host,
+                "name": "timesyncmaster",
+            }
+
+            documents.append(document)
+
+        if "slaves" in timesyncinfo.keys() and len(timesyncinfo["slaves"]) > 0:
+            for slave in timesyncinfo["slaves"]:
+                
+                try:
+                    rootoffset = Quantity(slave.get("rootoffset"), units="s", scale=0.000000001)
+                except Exception:
+                    rootoffset = Quantity(0, units="s", scale=0.000000001)
+                
+                try:
+                    localoffset = Quantity(slave.get("localoffset"), units="s", scale=0.000000001)
+                except Exception:
+                    localoffset = Quantity(0, units="s", scale=0.000000001)
+                
+                fields = {
+                    "s_name": slave.get("name"),
+                    "b_xnicpresent": slave.get("xnicPresent"),
+                    "b_timebeatpresent": slave.get("timebeatPresent") if slave.get("timebeatPresent") else False,
+                    "d_localoffset_ms": round(slave.get("localoffset") / 1000000, 5) if slave.get("localoffset") else None,
+                    "d_rootoffset_ms": round(slave.get("rootoffset") / 1000000, 5) if slave.get("rootoffset") else None,
+                    "d_localoffset_us": round(slave.get("localoffset") / 1000, 3) if slave.get("localoffset") else None,
+                    "d_rootoffset_us": round(slave.get("rootoffset") / 1000, 3) if slave.get("rootoffset") else None,
+                    "s_rootoffset": rootoffset.render(),
+                    "s_localoffset": localoffset.render()
+                }
+
+                self.store["slaves"].update({slave.get("name"): fields})
+
+                document = {
+                    "fields": fields,
+                    "host": self.host,
+                    "name": "timesyncslave",
+                }
+
+                documents.append(document)
+
+        return documents
+
 
 def main():
     args_parser = argparse.ArgumentParser(description="wXcked Eye API Poller Program")
@@ -328,10 +401,19 @@ def main():
         help="Re-run the collection",
     )
 
+    args_parser.add_argument(
+        "-t",
+        "--timesync",
+        required=False,
+        default=False,
+        action="store_true",
+        help="Collect TimeSync Metrics (quantiphy package needed)",
+    )
+
     args = args_parser.parse_args()
 
     collector = WxckedEye(
-        host=args.swxtch_host, port=args.swxtch_port, proto=args.swxtch_protocol
+        host=args.swxtch_host, port=args.swxtch_port, proto=args.swxtch_protocol, timing_api=args.timesync
     )
 
     if args.dump:

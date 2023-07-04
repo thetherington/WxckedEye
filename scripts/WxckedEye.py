@@ -316,12 +316,12 @@ class WxckedEye:
             for slave in timesyncinfo["slaves"]:
                 
                 try:
-                    rootoffset = Quantity(slave.get("rootoffset"), units="s", scale=0.000000001)
+                    rootoffset = Quantity(slave.get("rootOffset"), units="s", scale=0.000000001)
                 except Exception:
                     rootoffset = Quantity(0, units="s", scale=0.000000001)
                 
                 try:
-                    localoffset = Quantity(slave.get("localoffset"), units="s", scale=0.000000001)
+                    localoffset = Quantity(slave.get("localOffset"), units="s", scale=0.000000001)
                 except Exception:
                     localoffset = Quantity(0, units="s", scale=0.000000001)
                 
@@ -329,10 +329,10 @@ class WxckedEye:
                     "s_name": slave.get("name"),
                     "b_xnicpresent": slave.get("xnicPresent"),
                     "b_timebeatpresent": slave.get("timebeatPresent") if slave.get("timebeatPresent") else False,
-                    "d_localoffset_ms": round(slave.get("localoffset") / 1000000, 5) if slave.get("localoffset") else None,
-                    "d_rootoffset_ms": round(slave.get("rootoffset") / 1000000, 5) if slave.get("rootoffset") else None,
-                    "d_localoffset_us": round(slave.get("localoffset") / 1000, 3) if slave.get("localoffset") else None,
-                    "d_rootoffset_us": round(slave.get("rootoffset") / 1000, 3) if slave.get("rootoffset") else None,
+                    "d_localoffset_ms": round(slave.get("localOffset") / 1000000, 5) if slave.get("localOffset") else None,
+                    "d_rootoffset_ms": round(slave.get("rootOffset") / 1000000, 5) if slave.get("rootOffset") else None,
+                    "d_localoffset_us": round(slave.get("localOffset") / 1000, 3) if slave.get("localOffset") else None,
+                    "d_rootoffset_us": round(slave.get("rootOffset") / 1000, 3) if slave.get("rootOffset") else None,
                     "s_rootoffset": rootoffset.render(),
                     "s_localoffset": localoffset.render()
                 }
